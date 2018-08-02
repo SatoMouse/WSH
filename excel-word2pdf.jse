@@ -1,30 +1,30 @@
-// ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚³‚ê‚½Excel/Wordƒtƒ@ƒCƒ‹‚ðPDF‚É•ÏŠ·‚µ‚Ü‚·B
+// ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸExcel/Wordãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã™ã¹ã¦PDFã«å¤‰æ›ã—ã¾ã™ã€‚
 
-// ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŠm”F
+// ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç¢ºèª
 if (WScript.Arguments.Count() == 0) {
-  WScript.echo("ƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚¹‚ñB");
+  WScript.echo("ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“ã€‚");
   WScript.Quit();
 }
 
-// ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð1‚Â‚¸‚Âˆ—
+// ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’1ã¤ãšã¤å‡¦ç†
 for (var i = 0; i < WScript.Arguments.Count(); i++) {
   convertToPDF(WScript.Arguments.Item(i));
 }
-WScript.echo("I‚í‚è‚Ü‚µ‚½!");
+WScript.echo("çµ‚ã‚ã‚Šã¾ã—ãŸ!");
 WScript.Quit();
 
 //-----------------------------------------------------------
-// ƒtƒ@ƒCƒ‹‚ðPDF‚É•ÏŠ·‚·‚éŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’PDFã«å¤‰æ›ã™ã‚‹é–¢æ•°
 function convertToPDF(fname) {
   var reg=/(.*)(?:\.([^.]+$))/;
   fname2 = fname.match(reg)[1];
   var fname_pdf = fname2 + ".pdf";
-  if (fname.match("/*.xls?")) { // Excel‚ð•ÏŠ·
+  if (fname.match("/*.xls?")) { // Excelã‚’å¤‰æ›
     var book = WScript.GetObject(fname, "Excel.Sheet");
     book.ExportAsFixedFormat(0, fname_pdf);
     book.Close();
   }
-  else if (fname.match("/*.doc?")) { // Word‚ð•ÏŠ·
+  else if (fname.match("/*.doc?")) { // Wordã‚’å¤‰æ›
     var doc = WScript.GetObject(fname, "Word.Document");
     doc.SaveAs(fname_pdf, 17);
     doc.Close();
