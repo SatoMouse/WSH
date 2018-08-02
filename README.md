@@ -1,1 +1,2 @@
 # WSH
+JScript
