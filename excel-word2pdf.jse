@@ -1,0 +1,33 @@
+// ドラッグアンドドロップされたExcel/WordファイルをすべてPDFに変換します。
+
+// ドラッグアンドドロップされたファイルを確認
+if (WScript.Arguments.Count() == 0) {
+  WScript.echo("ファイルがありません。");
+  WScript.Quit();
+}
+
+// ドラッグアンドドロップされたファイルを1つずつ処理
+for (var i = 0; i < WScript.Arguments.Count(); i++) {
+  convertToPDF(WScript.Arguments.Item(i));
+}
+WScript.echo("終わりました!");
+WScript.Quit();
+
+//-----------------------------------------------------------
+// ファイルをPDFに変換する関数
+function convertToPDF(fname) {
+  var reg=/(.*)(?:\.([^.]+$))/;
+  fname2 = fname.match(reg)[1];
+  var fname_pdf = fname2 + ".pdf";
+  if (fname.match("/*.xls?")) { // Excelを変換
+    var book = WScript.GetObject(fname, "Excel.Sheet");
+    book.ExportAsFixedFormat(0, fname_pdf);
+    book.Close();
+  }
+  else if (fname.match("/*.doc?")) { // Wordを変換
+    var doc = WScript.GetObject(fname, "Word.Document");
+    doc.SaveAs(fname_pdf, 17);
+    doc.Close();
+  }
+}
+//-----------------------------------------------------------
