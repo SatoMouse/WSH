@@ -1,2 +1,2 @@
 # リポジトリ内のsjisファイルを指定
-*.js diff=sjis
+*.jse diff=sjis
